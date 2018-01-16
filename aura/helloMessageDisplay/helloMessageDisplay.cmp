@@ -1,0 +1,3 @@
+<aura:component >
+    <c:helloMessage message="Thanks for teaching me lightning"/>
+</aura:component>

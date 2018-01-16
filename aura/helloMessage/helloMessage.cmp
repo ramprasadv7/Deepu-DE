@@ -1,0 +1,4 @@
+<aura:component >
+    <aura:attribute name="message" type="string"/>
+    <p>{!$Label.c.Greeting + v.message}</p>
+</aura:component>

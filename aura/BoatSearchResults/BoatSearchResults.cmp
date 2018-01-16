@@ -1,0 +1,34 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" 
+                access="global" controller="BoatSearchResults">
+    <aura:handler name="init" action="{!c.doSearch}" value="{!this}"/>
+    <aura:handler name="BoatSelect" event="c:BoatSelect" action="{!c.onBoatSelect}"/>
+
+    <aura:attribute name="boatTypeId" type="String" />
+    <aura:attribute name="selectedBoatId" type="Id" />
+
+    <aura:attribute name="boats" type="Boat__c[]" />  
+    <aura:method name="search" description="Sample method with parameter">
+        <aura:attribute name="boatTypeId" type="String"  />
+    </aura:method>
+    <aura:set attribute="else">
+			<lightning:layout horizontalAlign="spread" multipleRows="true">
+				<aura:iteration var="boat" items="{!v.boats}">
+            		<lightning:layoutitem >
+                		<c:BoatTile boat="{!boat}" BoatSelect="{! boat.Id == v.selectedBoatId ? true : false }"/>
+            		</lightning:layoutitem>
+        		</aura:iteration>
+    		</lightning:layout>
+    </aura:set>
+    <aura:if isTrue="{!not(empty(v.boats))}">
+        <lightning:layout multipleRows="true" horizontalAlign="center">
+                <aura:iteration items="{!v.boats}" var="boatVar">
+                    <lightning:layoutItem flexibility="grow"  class="slds-m-right_small" >   
+                        <c:BoatTile boat="{!boatVar}"/>
+                    </lightning:layoutItem>
+                </aura:iteration>
+        </lightning:layout>
+         <aura:set attribute="else">
+        	<div class="slds-align_absolute-center">No boats found</div>
+    	</aura:set>
+    </aura:if>
+</aura:component>

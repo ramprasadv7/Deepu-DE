@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?><CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata"><fields>
+        <label><!-- Booking Datetime --></label>
+        <name>Booking_Datetime__c</name>
+    </fields><fields>
+        <label><!-- Booking Frequency --></label>
+        <name>Booking_Frequency__c</name>
+        <picklistValues>
+            <masterLabel>Bi-weekly</masterLabel>
+            <translation><!-- Bi-weekly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monthly</masterLabel>
+            <translation><!-- Monthly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>One Time</masterLabel>
+            <translation><!-- One Time --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weekly</masterLabel>
+            <translation><!-- Weekly --></translation>
+        </picklistValues>
+    </fields><fields>
+        <label><!-- Client --></label>
+        <name>Client__c</name>
+        <relationshipLabel><!-- Jobs --></relationshipLabel>
+    </fields><fields>
+        <label><!-- Company Revenue --></label>
+        <name>Company_Revenue__c</name>
+    </fields><fields>
+        <label><!-- Discount Amount --></label>
+        <name>Discount_Amount__c</name>
+    </fields><fields>
+        <label><!-- Discount % --></label>
+        <name>Discount__c</name>
+    </fields><fields>
+        <label><!-- Employee Revenue --></label>
+        <name>Employee_Revenue__c</name>
+    </fields><fields>
+        <label><!-- Gross Cost --></label>
+        <name>Gross_Cost__c</name>
+    </fields><fields>
+        <label><!-- Job Type --></label>
+        <name>Job_Type__c</name>
+        <picklistValues>
+            <masterLabel>B&amp;B</masterLabel>
+            <translation><!-- B&amp;B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Home</masterLabel>
+            <translation><!-- Home --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hotel</masterLabel>
+            <translation><!-- Hotel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Office</masterLabel>
+            <translation><!-- Office --></translation>
+        </picklistValues>
+    </fields><fields>
+        <label><!-- Number Of Cleaners --></label>
+        <name>Number_Of_Cleaners__c</name>
+    </fields><fields>
+        <label><!-- Payment Type --></label>
+        <name>Payment_Type__c</name>
+        <picklistValues>
+            <masterLabel>Cash</masterLabel>
+            <translation><!-- Cash --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credit</masterLabel>
+            <translation><!-- Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Debit</masterLabel>
+            <translation><!-- Debit --></translation>
+        </picklistValues>
+    </fields><fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Booked</masterLabel>
+            <translation><!-- Booked --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Executed</masterLabel>
+            <translation><!-- Executed --></translation>
+        </picklistValues>
+    </fields><fields>
+        <label><!-- Total Cost --></label>
+        <name>Total_Cost__c</name>
+    </fields><caseValues>
+        <plural>false</plural>
+        <value>Jobs</value>
+    </caseValues><caseValues>
+        <plural>true</plural>
+        <value>Jobs</value>
+    </caseValues><startsWith>Consonant</startsWith><layouts>
+        <layout>Jobs Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts><validationRules>
+        <errorMessage><!-- You cannot apply discount once the job is executed --></errorMessage>
+        <name>Lock_Fields_once_job_is_executed</name>
+    </validationRules></CustomObjectTranslation>

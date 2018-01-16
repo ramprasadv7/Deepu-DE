@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Cleaner__c.Number_Of_Executed_Jobs__c</field>
+    </columns>
+    <columns>
+        <field>Cleaner__c.Revenue_Earned__c</field>
+    </columns>
+    <columns>
+        <field>Cleaner__c.Amount_Due__c</field>
+    </columns>
+    <columns>
+        <field>Cleaner__c.Amount_Paid__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Cleaners With Executed Jobs and Payments</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Cleaner__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

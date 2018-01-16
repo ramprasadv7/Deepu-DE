@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?><CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata"><fields>
+        <label><!-- Battle Station --></label>
+        <name>Battle_Station__c</name>
+        <relationshipLabel><!-- Resources --></relationshipLabel>
+    </fields><fields>
+        <label><!-- Quantity --></label>
+        <name>Quantity__c</name>
+    </fields><fields>
+        <label><!-- Utilization --></label>
+        <name>Utilization__c</name>
+    </fields><caseValues>
+        <plural>false</plural>
+        <value>Resource</value>
+    </caseValues><caseValues>
+        <plural>true</plural>
+        <value>Resources</value>
+    </caseValues><startsWith>Consonant</startsWith><validationRules>
+        <errorMessage><!-- Exhaust Port Inspectors must work at least 150%. No coffee breaks! --></errorMessage>
+        <name>Inspectors_Must_Work_Overtime</name>
+    </validationRules></CustomObjectTranslation>

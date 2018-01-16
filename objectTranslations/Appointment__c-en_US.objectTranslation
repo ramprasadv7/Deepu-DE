@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?><CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata"><fields>
+        <label><!-- End Time --></label>
+        <name>End_Time__c</name>
+    </fields><fields>
+        <label><!-- Patient --></label>
+        <name>Patient__c</name>
+        <relationshipLabel><!-- Appointments --></relationshipLabel>
+    </fields><fields>
+        <label><!-- Physician --></label>
+        <name>Physician__c</name>
+        <relationshipLabel><!-- Appointments --></relationshipLabel>
+    </fields><fields>
+        <label><!-- Start Time --></label>
+        <name>Start_Time__c</name>
+    </fields><caseValues>
+        <plural>false</plural>
+        <value>Appointment</value>
+    </caseValues><caseValues>
+        <plural>true</plural>
+        <value>Appointments</value>
+    </caseValues><startsWith>Vowel</startsWith></CustomObjectTranslation>

@@ -1,0 +1,73 @@
+<apex:page standardController="Carpool__c" standardStylesheets="false" id="page" docType="html-5.0">
+<script src="https://maps.googleapis.com/maps/api/js?language=EN&sensor=false&libraries=places" type="text/javascript"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/jquery.datetimepicker.css"/>
+    <script type="text/javascript"> 
+
+        function initializeField() {        
+            var startInput = document.getElementById('page:form:startAddressInput');           
+            var autocomplete = new google.maps.places.Autocomplete(startInput); 
+
+            var endInput = document.getElementById('page:form:endAddressInput');           
+            var autocomplete = new google.maps.places.Autocomplete(endInput); 
+        }
+
+        google.maps.event.addDomListener(window, 'load', initializeField);  
+
+        $j = jQuery.noConflict(); 
+        $j('#startTimeInput').datetimepicker({
+    	format:'Y-m-d H:i',
+    	inline:true
+		});
+
+    </script> 
+ <apex:slds />
+ <div class="slds-scope">
+    <div class="slds-page-header">
+    <apex:form id="form">
+	    <div class="slds-grid">
+	        <div class="slds-col slds-has-flexi-truncate" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	            <div class="slds-media slds-no-space slds-grow">
+	                <div class="slds-media__figure">
+	                    <svg class="slds-icon slds-icon-standard-user .slds-icon--small" aria-hidden="true">
+	                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#people')}"></use>
+	                    </svg>
+	                </div>
+	                <div class="slds-media__body">
+	                    <p class="slds-text-title--caps slds-line-height--reset">New Carpool</p>
+	                    <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate"
+	                        title="this should match the Record Title">Carpool</h1>
+	                </div>
+	            </div>
+	            <div class="slds-form slds-form_stacked" style="padding: 20px;">
+	              <div class="slds-form-element">
+				    <label class="slds-form-element__label" for="input-id-01">Start Location</label>
+				    <div class="slds-form-element__control">
+				      <apex:inputText id="startAddressInput" Styleclass="slds-input" value="{!Carpool__c.Start_Address__c}"/>
+				    </div>
+				  </div>
+
+				  <div class="slds-form-element">
+				    <label class="slds-form-element__label" for="input-id-01">End Location</label>
+				    <div class="slds-form-element__control">
+				      <apex:inputText id="endAddressInput" Styleclass="slds-input" value="{!Carpool__c.End_Address__c}"/>
+				    </div>
+				  </div>
+
+				  <div class="slds-form-element">
+				    <label class="slds-form-element__label" for="input-id-01">Start Time</label>
+				    <div class="slds-form-element__control">
+				      <apex:inputField id="startTimeInput" value="{!Carpool__c.Start_Time__c}"/>
+				    </div>
+				  </div>
+	            </div>
+	        </div>
+	        <div class="slds-col slds-no-flex slds-grid slds-align-top">
+	            <apex:commandButton action="{!Save}" value="Save" styleClass="slds-button slds-button--neutral"/>
+	        </div>
+	    </div>
+	</apex:form>
+    </div>
+ </div>
+</apex:page>

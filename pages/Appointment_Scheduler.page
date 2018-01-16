@@ -1,0 +1,213 @@
+<apex:page controller="AppointmentSchedulerController" standardStylesheets="false" applyBodyTag="false" showHeader="false" sidebar="false" docType="html-5.0" title="Appointment Scheduler">
+<apex:slds />
+<head>
+<apex:IncludeScript value="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"/>
+<style type="text/css">
+@import url(https://fast.fonts.net/cssapi/cf805ac7-554f-4fb6-9037-c87b8cf70aa1.css);
+	.panel {
+        position: absolute;
+        top: 15%;
+        left: 25%;
+        margin-bottom: 0;
+        border:none;
+        border-radius: 5px;
+        background-color: white;
+        font-family: Avenir W01;
+        }
+
+    .specilizationPanel{
+    	background-color: #f0efee;
+    	margin: 10px;
+    	text-align: center;
+    	font-size: 20px;
+    	cursor: pointer;	
+    	padding: 20px;
+    	border-radius: 5px;
+    	-webkit-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.40);
+    }
+    #header {
+      	background-color: #505357;
+    }
+    .hederContent{
+        color: #f4f6f9;
+        font-size: 18px;
+        color: rgb(255, 255, 255);
+        font-family: Avenir W01;
+        padding: 18px;
+    }
+</style>
+<script type="text/javascript">
+var $jp = jQuery.noConflict();
+	function getPhysicians(theId, theName, theCost)
+	{
+		console.log(theId);
+		queryPhysicians(theId, theName, theCost);
+	}
+
+	function showPhyDiv()
+	{
+		$jp("#spDivPanel").hide();
+		$jp("#phyDivPanel").show();
+	}
+
+	function openEventSchedule()
+	{
+		$jp("#createEvent").show();
+	}
+
+
+	function closeCreateEvent()
+	{
+		$jp("#createEvent").hide();
+	}
+	function callCreateEvent()
+	{
+		console.log('inside create event javascript function');
+		console.log(document.getElementById("startTime").value +','+document.getElementById("endTime").value)
+		callscheduleEvent(document.getElementById("startTime").value,document.getElementById("endTime").value);
+	}
+</script>
+</head>
+<body style="background-color: #f0efee;margin:auto;height: 100%">
+<div class="slds-scope">
+<apex:form id="theForm">
+	<div id="header">
+        <div class="slds-grid">
+	        <div class="slds-size--1-of-4 hederContent" align="right">
+	            <span style="display: inline-table;font-family: Avenir W01;font-size: 20px;"><b>ABC Medical Clinic</b></span>
+	        </div>
+	        <div class="slds-size--1-of-4"/>
+	        <div class="slds-size--1-of-4 hederContent" align="right"> 
+	            <span style="display: inline-table;">Appointment for <b style="font-size: 16px;color: rgb(244, 144, 31);">{!contactForAppointment.Name}</b></span>
+	        </div>
+	        <div class="slds-size--1-of-4"/>
+        </div>
+    </div>
+	<apex:actionFunction name="queryPhysicians" action="{!showPhysicians}" reRender="phyPanel" oncomplete="showPhyDiv();">
+		<apex:param name="spId" value="" />
+		<apex:param name="spName" value="" />
+		<apex:param name="spCost" value="" />
+	</apex:actionFunction>
+	<apex:actionFunction name="callscheduleEvent" action="{!scheduleEvent}" status="statusUpdating" oncomplete="hideCreateEvent();"
+	reRender="pageMessage" >
+		<apex:param name="startTime" value="" />
+		<apex:param name="endTime" value="" />
+	</apex:actionFunction>
+	<div class="panel" style="width:50%;" id="spDivPanel">
+		<h2 style="font-size: 30px;padding-bottom: 20px;" id="signIn" align="center" class="slds-m-top--medium">Please select a Specialization</h2>
+		<div class="slds-grid slds-m-top--large" style="padding:15px">
+		<apex:repeat value="{!specializations}" var="theSp">
+			<div class="slds-size--1-of-{!specializations.size} specilizationPanel" 
+			onclick="getPhysicians('{!theSp.Id}','{!theSp.Name}','{!theSp.Cost__c}');return false;">
+					<h1 class="slds-m-bottom-x-large">{!theSp.Name}</h1>
+					<p>${!theSp.Cost__c}/hour</p>
+			</div>
+		</apex:repeat>
+		</div>
+	</div>
+	<apex:outputPanel >
+      </apex:outputPanel>
+	<div class="panel" style="width:50%;display: none;" id="phyDivPanel" align="Center">
+	<h2 style="font-size: 30px;padding-bottom: 20px;" id="signIn" align="center" class="slds-m-top--medium">Please select a Physician</h2>
+		<apex:outputPanel id="phyPanel">
+			<apex:outputLabel value="Physician: " for="phyList" styleClass="slds-form-element__label" />
+			<div class="slds-size--1-of-3">
+            <div class="slds-select_container">
+                <apex:selectList value="{!selectedPhysicianId}" size="1" id="phyList" styleClass="slds-select">
+                	<apex:actionSupport event="onchange" action="{!updateCalender}" rerender="theCal"/>
+                    <apex:selectOptions value="{!phyOptions}"/>
+                </apex:selectList>
+            </div>
+            </div>
+		</apex:outputPanel>
+		<apex:outputPanel id="theCal">
+			<iframe src="https://calendar.google.com/calendar/embed?src={!calenderId}&ctz=America/Los_Angeles" style="border: 0" width="500" height="500" frameborder="0" scrolling="no" class="slds-m-top--large slds-m-bottom--medium"></iframe>
+			<br/>
+			<button onclick="openEventSchedule();return false;" class="slds-button slds-button--brand slds-m-bottom--small">Schedule</button>
+		</apex:outputPanel>
+	</div>
+
+	<div id="createEvent" style="display:none">
+	<div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+	  <div class="slds-modal__container">
+	    <div class="slds-modal__header" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	      <h2 id="header43" class="slds-text-heading--medium">Create Appointment</h2>
+	    </div>
+	    <div class="slds-modal__content slds-p-around--medium">
+	      <div class="slds-form--horizontal">
+		      <div class="slds-form-element">
+			    <label class="slds-form-element__label" for="inputSample2">Start DateTime</label>
+			    <div class="slds-form-element__control">
+			      <input type="datetime-local" id="startTime" class="slds-input"/>
+			    </div>
+			  </div>
+			  <div class="slds-form-element">
+			    <label class="slds-form-element__label" for="textareaSample2">End DateTime</label>
+			    <div class="slds-form-element__control">
+			      <input type="datetime-local" id="endTime" class="slds-input"/>
+			    </div>
+			  </div>
+	      </div>
+	      <apex:actionStatus id="statusUpdating">
+                <apex:facet name="start">
+                  <div class="slds-form--inline" align="center">
+                      <div class="slds-form-element" >
+                        <div class="slds-spinner slds-spinner--medium" role="alert">
+                          <div class="slds-spinner__dot-a"></div>
+                          <div class="slds-spinner__dot-b"></div>
+                        </div>
+                      </div>
+                  </div>
+                </apex:facet>
+            </apex:actionStatus>
+            <apex:outputPanel id="pageMessage">
+            	<script type="text/javascript">
+            	var $jp = jQuery.noConflict();
+            		function hideCreateEvent() 
+					{
+						console.log({!(pageMessages.size)})
+						if({!(pageMessages.size)} == 0)
+						{
+							$jp("#createEvent").hide();
+							$jp('#success').show();
+						}
+								
+					}
+            	</script>
+            	<c:LightningPageMessage theMessages="{!pageMessages}" />
+            </apex:outputPanel>
+	    </div>
+	    <div class="slds-modal__footer">
+	      <button class="slds-button slds-button--neutral" onclick="closeCreateEvent();return false;">Close</button>
+	      <button class="slds-button slds-button--brand" onclick="callCreateEvent();return false;">Save</button>
+	    </div>
+	  </div>
+	</div>
+	<div class="slds-backdrop slds-backdrop--open"></div>
+	</div>
+
+	<div id="success" style="display:none">
+	<div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open" align="center">
+	  <div class="slds-modal__container">
+	    <div class="slds-modal__content slds-p-around--medium">
+	      <div class="slds-modal__content slds-p-around--large slds-text-longform" style="background-color: #f0efee">
+            <span class="slds-icon_container slds-icon-action-approval">
+            <svg aria-hidden="true" class="slds-icon slds-icon--large" viewbox="0 0 24 24">
+              <path  d="M8.8 20.1l-7.6-7.6c-.3-.3-.3-.8 0-1.1l1-1c.2-.2.7-.2 1 0l5.7 5.8c.2.2.5.2.7 0L20.8 4.9c.3-.3.8-.3 1 0l1 1c.3.3.3.7 0 1l-13 13.2c-.3.3-.8.3-1 0z"/>
+            </svg>
+            </span>
+            <br/>
+            	Appointment was scheduled.
+            	<br/>Please close this window.
+            </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="slds-backdrop slds-backdrop--open"></div>
+	</div>
+</apex:form>
+</div>
+</body>
+</apex:page>

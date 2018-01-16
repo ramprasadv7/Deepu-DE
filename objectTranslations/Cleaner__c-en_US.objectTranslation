@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?><CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata"><fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields><fields>
+        <label><!-- Amount Due --></label>
+        <name>Amount_Due__c</name>
+    </fields><fields>
+        <label><!-- Amount Paid --></label>
+        <name>Amount_Paid__c</name>
+    </fields><fields>
+        <label><!-- Number Of Executed Jobs --></label>
+        <name>Number_Of_Executed_Jobs__c</name>
+    </fields><fields>
+        <label><!-- Revenue Earned --></label>
+        <name>Revenue_Earned__c</name>
+    </fields><caseValues>
+        <plural>false</plural>
+        <value>Cleaner</value>
+    </caseValues><caseValues>
+        <plural>true</plural>
+        <value>Cleaners</value>
+    </caseValues><startsWith>Consonant</startsWith><layouts>
+        <layout>Cleaner Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts></CustomObjectTranslation>

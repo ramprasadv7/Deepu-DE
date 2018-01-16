@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?><CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata"><fields>
+        <label><!-- Access Token Last retrieved --></label>
+        <name>Access_Token_Last_retrieved__c</name>
+    </fields><fields>
+        <label><!-- Access Token --></label>
+        <name>Access_Token__c</name>
+    </fields><fields>
+        <label><!-- Auth Code --></label>
+        <name>Auth_Code__c</name>
+    </fields><fields>
+        <label><!-- Calender Id --></label>
+        <name>Calender_Id__c</name>
+    </fields><fields>
+        <label><!-- Client Id --></label>
+        <name>Client_Id__c</name>
+    </fields><fields>
+        <label><!-- Client Secret --></label>
+        <name>Client_Secret__c</name>
+    </fields><fields>
+        <label><!-- Refresh Token --></label>
+        <name>Refresh_Token__c</name>
+    </fields><fields>
+        <label><!-- Specialization --></label>
+        <name>Specialization__c</name>
+        <relationshipLabel><!-- Physicians --></relationshipLabel>
+    </fields><caseValues>
+        <plural>false</plural>
+        <value>Physician</value>
+    </caseValues><caseValues>
+        <plural>true</plural>
+        <value>Physicians</value>
+    </caseValues><startsWith>Consonant</startsWith><layouts>
+        <layout>Physician Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts><webLinks>
+        <label><!-- Authorize_User --></label>
+        <name>Authorize_User</name>
+    </webLinks><webLinks>
+        <label><!-- Refresh_Token --></label>
+        <name>Refresh_Token</name>
+    </webLinks></CustomObjectTranslation>

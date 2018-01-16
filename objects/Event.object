@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?><CustomObject xmlns="http://soap.sforce.com/2006/04/metadata"><actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>Decline</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>DeleteSeries</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>NewEvent</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>NewSfdcEvent</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>Today</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides><fields>
+        <fullName>ActivityDate</fullName>
+    </fields><fields>
+        <fullName>ActivityDateTime</fullName>
+    </fields><fields>
+        <fullName>Description</fullName>
+    </fields><fields>
+        <fullName>DurationInMinutes</fullName>
+    </fields><fields>
+        <fullName>Email</fullName>
+    </fields><fields>
+        <fullName>EndDateTime</fullName>
+    </fields><fields>
+        <fullName>EventSubtype</fullName>
+    </fields><fields>
+        <fullName>IsAllDayEvent</fullName>
+    </fields><fields>
+        <fullName>IsPrivate</fullName>
+    </fields><fields>
+        <fullName>Location</fullName>
+    </fields><fields>
+        <fullName>OwnerId</fullName>
+        <type>Lookup</type>
+    </fields><fields>
+        <fullName>Phone</fullName>
+    </fields><fields>
+        <fullName>ShowAs</fullName>
+    </fields><fields>
+        <fullName>StartDateTime</fullName>
+    </fields><fields>
+        <fullName>Subject</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Send Letter/Quote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields><fields>
+        <fullName>Type</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields><fields>
+        <fullName>WhatId</fullName>
+        <type>Lookup</type>
+    </fields><fields>
+        <fullName>WhoId</fullName>
+        <type>Lookup</type>
+    </fields><compactLayoutAssignment>SYSTEM</compactLayoutAssignment><enableFeeds>false</enableFeeds><sharingModel>Private</sharingModel><webLinks>
+        <fullName>Delete_From_Google</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Delete From Google</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT("/soap/ajax/30.0/connection.js")} 
+{!REQUIRESCRIPT("/soap/ajax/30.0/apex.js")} 
+
+var result = sforce.apex.execute("GoogleApiService","deleteEventFromGoogle",{eventId:"{!Event.Id}"});
+
+window.open('https://na3.salesforce.com/{!Event.Who}');</url>
+    </webLinks><webLinks>
+        <fullName>Send_to_Google</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send to Google</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>var clientId = '159393863666-cirmd88rrmn8qo7d64tdf6hj0kvgpmr2.apps.googleusercontent.com';
+var apiKey = 'Pk2qLrxt5kAbNyZ--N07DJzi'; 
+
+ 
+var scopes = 'https://www.googleapis.com/auth/calendar'; 
+ 
+// Use a button to handle authentication the first time.
+function handleClientLoad() {
+gapi.client.setApiKey(apiKey);
+window.setTimeout(checkAuth,1);
+} 
+ 
+function checkAuth() {
+gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
+} 
+ 
+function handleAuthResult(authResult) {
+// var authorizeButton = document.getElementById('authorize-button');
+if (authResult &amp;&amp; !authResult.error) { 
+ 
+makeApiCall(); 
+ 
+} else {
+handleAuthClick();
+}
+} 
+ 
+function handleAuthClick() {
+gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+return false;
+} 
+ 
+// Load the API and make an API call. Display the results on the screen.
+function makeApiCall() {
+AddEvent();
+}
+function AddEvent()
+{
+var startdate='{!YEAR(DATEVALUE(Task.CreatedDate))}' + '-' + '{!MONTH(DATEVALUE(Task.CreatedDate))}' + '-' + '{!DAY(DATEVALUE(Task.CreatedDate))}';
+var enddate='{!YEAR(Task.ActivityDate)}' + '-' + '{!MONTH(Task.ActivityDate)}' + '-' + '{!DAY(Task.ActivityDate)}'; 
+ 
+var resource = {
+"summary":"{!Task.Subject}",
+"description": "{!Task.Description}",
+"start": {
+"date": startdate
+},
+"end": {
+"date": enddate
+}
+};
+gapi.client.load('calendar', 'v3', function() {
+var request = gapi.client.calendar.events.insert({
+'calendarId': 'primary',
+'resource': resource
+});
+request.execute(function(resp) {
+console.log(resp);
+if (resp.id){
+alert("Event was successfully added to the calendar!");
+}
+else{
+alert("An error occurred. Please try again later.")
+} 
+ 
+});
+}); 
+ 
+}
+{!REQUIRESCRIPT("https://apis.google.com/js/client.js?onload=handleClientLoad")};
+handleClientLoad()</url>
+    </webLinks></CustomObject>

@@ -1,0 +1,9 @@
+Hello {!Contact.LastName},
+
+Your Appointment with {!Physician__c.Name} is scheduled.
+
+Start : {!Event.StartDateTime}
+
+End : {!Event.EndDateTime}
+
+Have a great day.

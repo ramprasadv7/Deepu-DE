@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?><CustomObject xmlns="http://soap.sforce.com/2006/04/metadata"><actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides><actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides><fields>
+        <fullName>Booking_Datetime__c</fullName>
+        <externalId>false</externalId>
+        <label>Booking Datetime</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields><fields>
+        <fullName>Booking_Frequency__c</fullName>
+        <externalId>false</externalId>
+        <label>Booking Frequency</label>
+        <picklist>
+            <picklistValues>
+                <fullName>One Time</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bi-weekly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields><fields>
+        <fullName>Client__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Client</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Jobs</relationshipLabel>
+        <relationshipName>Jobs</relationshipName>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields><fields>
+        <fullName>Company_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <formula>If( ISPICKVAL( Status__c , 'Executed'), Gross_Cost__c /2,0 )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Company Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields><fields>
+        <fullName>Discount_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Discount Amount</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields><fields>
+        <fullName>Discount__c</fullName>
+        <externalId>false</externalId>
+        <label>Discount %</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields><fields>
+        <fullName>Employee_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <formula>If( ISPICKVAL( Status__c , 'Executed'), Gross_Cost__c /2,0 )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Employee Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields><fields>
+        <fullName>Gross_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_Cost__c  - (Total_Cost__c * (Discount__c))- Discount_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Gross Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields><fields>
+        <fullName>Job_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Job Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Home</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hotel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B&amp;B</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields><fields>
+        <fullName>Number_Of_Cleaners__c</fullName>
+        <externalId>false</externalId>
+        <label>Number Of Cleaners</label>
+        <summaryForeignKey>Assigned_Cleaner__c.Job__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields><fields>
+        <fullName>Payment_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Credit</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Debit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields><fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Booked</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Executed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields><fields>
+        <fullName>Total_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>Number_Of_Cleaners__c * 180</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields><allowInChatterGroups>true</allowInChatterGroups><compactLayoutAssignment>SYSTEM</compactLayoutAssignment><deploymentStatus>Deployed</deploymentStatus><description>This object contains all the data related to Jobs(Cost, Time, Number of cleaners etc).</description><enableActivities>true</enableActivities><enableBulkApi>true</enableBulkApi><enableFeeds>false</enableFeeds><enableHistory>true</enableHistory><enableReports>true</enableReports><enableSearch>true</enableSearch><enableSharing>true</enableSharing><enableStreamingApi>true</enableStreamingApi><label>Jobs</label><nameField>
+        <displayFormat>J-{0000000}</displayFormat>
+        <label>Jobs Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField><pluralLabel>Jobs</pluralLabel><searchLayouts /><sharingModel>ReadWrite</sharingModel><listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews><validationRules>
+        <fullName>Lock_Fields_once_job_is_executed</fullName>
+        <active>true</active>
+        <description>Lock discount fields once job is executed</description>
+        <errorConditionFormula>IF((ISPICKVAL( Status__c , 'Executed') &amp;&amp; 
+   (ISCHANGED( Discount__c ) || ISCHANGED(Discount_Amount__c ) ) ) ,true,false)</errorConditionFormula>
+        <errorMessage>You cannot apply discount once the job is executed</errorMessage>
+    </validationRules></CustomObject>
